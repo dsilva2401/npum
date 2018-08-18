@@ -61,6 +61,21 @@ var verifyIfPreventFileExists = function (workingDir, cb) {
 }
 
 var startUpdatesWatcher = function (workingDir, gitData, intvalMs) {
+    // Verify if should update
+    verifyIfPreventFileExists(workingDir, function (preventFileExists) {
+        if (preventFileExists) {
+            return;
+        }
+        // Verify if there are changes
+        verifyIfGitChanges(workingDir, gitData, function (changesDetected) {
+            if (!changesDetected) {
+                return;
+            }
+            // Update project
+            console.log('Starting update');
+            updateProject(workingDir, gitData);
+        });
+    });
     setInterval(() => {
         // Verify if should update
         verifyIfPreventFileExists(workingDir, function (preventFileExists) {
@@ -76,7 +91,7 @@ var startUpdatesWatcher = function (workingDir, gitData, intvalMs) {
                 console.log('Starting update');
                 updateProject(workingDir, gitData);
             });
-        })        
+        });
     }, intvalMs || 60000);
 }
 

@@ -4,6 +4,10 @@ Issues updating remotely a nodejs process?
 
 `npum` may help you, it provides a watcher daemon looking at a repository branch for updates, when it finds an update it handles the update.
 
+## Requirements
+- `git`
+- `pm2`
+
 ## Project requirements
 
 `npum` uses 2 scripts that should be defined inside the `package.json` file.
