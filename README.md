@@ -8,6 +8,8 @@ Issues updating remotely a nodejs process?
 - `git`
 - `pm2`
 
+> pm2 should me attached to boot process (run `pm2 startup`)
+
 ## Project requirements
 
 `npum` uses 2 scripts that should be defined inside the `package.json` file.
