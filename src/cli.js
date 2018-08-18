@@ -24,11 +24,13 @@ switch (action) {
                 return;
             }
             pm2.start({
-                script    : './execcli.js',
-                args: [
-                    action, workingDir, gitUrl, gitBranch
-                ],
-                instances : 1,
+                script: './execcli.js',
+                options: {
+                    args: [
+                        action, workingDir, gitUrl, gitBranch
+                    ],
+                },
+                instances: 1,
             }, function(err, apps) {
                 pm2.disconnect();   // Disconnects from PM2
                 if (err) throw err
